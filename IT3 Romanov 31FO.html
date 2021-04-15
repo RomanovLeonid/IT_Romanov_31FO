@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+<meta charset="utf-8" />
+<title>Знакомство с HTML</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" >
+<script type="text/javascript">
+var lastResFind=""; // последний удачный результат
+var copy_page=""; // копия страницы в ихсодном виде
+function TrimStr(s) {
+     s = s.replace( /^\s+/g, '');
+  return s.replace( /\s+$/g, '');
+}
+function FindOnPage(inputId) {//ищет текст на странице, в параметр передается ID поля для ввода
+  var obj = window.document.getElementById(inputId);
+  var textToFind;
+ 
+  if (obj) {
+    textToFind = TrimStr(obj.value);//обрезаем пробелы
+  } else {
+    alert("Введенная фраза не найдена");
+    return;
+  }
+  if (textToFind == "") {
+    alert("Вы ничего не ввели");
+    return;
+  }
+ 
+  if(document.body.innerHTML.indexOf(textToFind)=="-1")
+  alert("Ничего не найдено, проверьте правильность ввода!");
+ 
+  if(copy_page.length>0)
+        document.body.innerHTML=copy_page;
+  else copy_page=document.body.innerHTML;
+
+ 
+  document.body.innerHTML = document.body.innerHTML.replace(eval("/name="+lastResFind+"/gi")," ");//стираем предыдущие якори для скрола
+  document.body.innerHTML = document.body.innerHTML.replace(eval("/"+textToFind+"/gi"),"<a name="+textToFind+" style='background:red'>"+textToFind+"</a>"); //Заменяем найденный текст ссылками с якорем;
+  lastResFind=textToFind; // сохраняем фразу для поиска, чтобы в дальнейшем по ней стереть все ссылки
+  window.location = '#'+textToFind;//перемещаем скрол к последнему найденному совпадению
+ }
+</script>
+</head>
+<body>
+<input type="text" id="text-to-find" value="">
+<input type="button" onclick="javascript: FindOnPage('text-to-find'); return false;" value="Искать"/>
+<br/><i>Введите слово или фразу для поиска.</i>
+<hr/>
+
+<div class="slide">
+    <input type="radio" name="slider2" id="slider2_1" checked="checked">
+    <label for="slider2_1"></label>
+    <div><p>Ледовый дворец СГАФКСТ </p> <img src="images/1.jpg"></div>
+    <label for="slider2_2"></label>
+    <input type="radio" name="slider2" id="slider2_2">
+    <label for="slider2_2"></label>
+    <div><p>Ледовый дворец 25 сентября </p> <img src="images/2.jpg"></div>
+    <label for="slider2_3"></label>
+    <input type="radio" name="slider2" id="slider2_3">
+    <label for="slider2_3"></label>
+    <div><p>Ледовый дворец Юбилейный </p> <img src="images/3.jpg"></div>
+    <input type="radio" name="slider2" id="slider2_4">
+    <label for="slider2_4"></label>
+    <div><p>Ледовый дворец "Сафоново Спорт-Арена" </p> <img src="images/4.jpg"></div>
+    <input type="radio" name="slider2" id="slider2_5">
+    <label for="slider2_5"></label>
+    <div><p>Ледовый дворец Снегирь </p> <img src="images/5.jpg"></div>
+    <label for="slider2_6"></label>
+</div>
+
+<a name="up"><h1 align="center"> Романов Леонид <h1></a>
+<h3 align="right">Хорошие игроки там, где шайба.
+А великие - там, где она будет.</h3>
+<h3 align="right">(Уэйн Гретцки)</h3>
+<h2><font color="#00FF00"> Меня зовут </font>, <a href="https://vk.com/id194658782">Романов Леонид</a>. <font color="FF0000">
+Мне 22 года</font>, я учусь в Смоленском Государственном Университете, на факультете экономики и управления.</h2>
+
+<table align="center">
+<tr><th>Год рождения</th><th>Соревнование в сезоне 2020-2021</th></tr> 
+<tr><td>2003-2004</td><td>Юниорская Хоккейная Лига</td></tr> 
+<tr><td>2006-2007</td><td>Золотая шайба имени А.В.Тарасова</td></tr> 
+<tr><td>2007</td><td>Первенство ЦФО</td></tr> 
+<tr><td>2008-2009</td><td>Золотая шайба имени А.В.Тарасова</td></tr> 
+<tr><td>2010-2011</td><td>Золотая шайба имени А.В.Тарасова</td></tr> 
+</table>
+<br>
+<h2 align="center">Пример таблицы с объединенными ячейками</h2>
+<table border="1" cellpadding="4" cellspacing="0" align="center">
+   <tr>
+    <td rowspan="2">Соревнования</td>
+    <th colspan="3">Год рождения</th>
+   </tr>
+   <tr>
+    <th>2003-2004</th><th>2006-2007</th><th>2010-2011</th>
+   </tr>
+   <tr align="center">
+    <td>Место</td>
+    <td>8</td><td>6</td><td>7</td>
+   </tr>
+  </table>
+
+<p><img src="images/puck.jpg" alt="Название изображения" width=600px height = 400px/></p>
+<p><img src="images/puck.jpg" alt="Название изображения" width=300px height = 200px align="center"/></p>
+<p><img src="images/puck.jpg" alt="Название изображения" width=150px height = 100px align="right"/></p>
+
+<p><h3 align= "center"><a href="#up">Наверх</a></h3></p>
+</body>
+</html>
